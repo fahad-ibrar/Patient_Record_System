@@ -1,0 +1,14 @@
+/* line 4, /mnt/hgfs/Ubuntu_Data/Project/Patient_Record_System/app/assets/stylesheets/patient.scss */
+#patientpic {
+  max-width: 150px;
+}
+
+/* line 9, /mnt/hgfs/Ubuntu_Data/Project/Patient_Record_System/app/assets/stylesheets/patient.scss */
+.transparent {
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+}

@@ -1,0 +1,196 @@
+<% @pageTitle="Add Patient"%>
+<!-- <form onsubmit="return submitForm()"> -->
+<%=form_for(:patient, :url=> {:action=>'create'}, html:{onsubmit:'return submitForm()'}) do |p| %>
+  <div id="addPatient" class="container">
+
+    <h2 class="text-center"><strong>Patient Registration</strong></h2>
+
+    <div class="row">
+      <h3><strong>Photo</strong></h3>
+    </div>
+    <div class="row">
+      <div class="col-sm-9">
+           <%= p.file_field :photo %>
+      </div>
+
+      <div class="col-sm-3">
+           <%=image_tag("dummy_pic.jpg", alt: "Example Image", :id=>"patientpic")%>
+      </div>
+    </div>
+    <div class="row">
+      <h3><strong>Particulars</strong></h3>
+    </div>
+    <hr class="divider">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="row">
+          <div class="col-sm-6">
+            <label>Title</label>
+          </div>
+          <div class="col-sm-6">
+         <!--    <select>
+              <option>Mr.</option>
+              <option>Ms.</option>
+              <option>Mrs.</option>
+              <option>Dr.</option>
+            </select> -->
+            <%= p.select :title, options_for_select([['Mr.', 'Mr.'],['Ms.', 'Ms.'],['Mrs.', 'Mrs.'],['Dr.', 'Dr.']]),{ include_blank: 'Select' },{ class:'input-sm', required: true  } %>
+
+          </div>
+        </div>
+      </div>
+     </div>
+     <br/>
+     <div class="row">
+      <div class="col-sm-6">
+        <div class="row">
+          <div class="col-sm-6">
+            <label>First Name</label>
+          </div>
+
+          <div class="col-sm-6">
+           <%= p.text_field :firstName, class: 'form-control input-sm', required:true%>
+            <!-- <input class="form-control input-sm" type="text" value="" required> -->
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-sm-6">
+        <div class="row">
+          <div class="col-sm-6">
+            <label>Last Name</label>
+          </div>
+
+          <div class="col-sm-6">
+           <%= p.text_field :lastName, class: 'form-control input-sm', required:true%>
+            <!-- <input class="form-control input-sm" type="text" value="" required> -->
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <br/>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="row">
+          <div class="col-sm-6">
+            <label>Gender</label>
+          </div>
+          <div class="col-sm-6">
+          <!--   <select>
+              <option>Male</option>
+              <option>Female</option>
+            </select> -->
+            <%=p.select :gender, options_for_select([['Male', true],['Female', false]]),{ include_blank: 'Select' },{ class:'input-sm', required: true  } %>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="row">
+          <div class="col-sm-6">
+            <label>Date of Birth</label>
+          </div>
+
+          <div class="col-sm-6">
+         <!--    <input class="form-control input-sm" type="date" value="" required> -->
+           <%=p.date_field :dob, class:'form-control input-sm', max: "#{Date.today.day}-#{Date.today.month}-#{Date.today.year}", required: true %>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <br/>
+    <div class ="row">
+      <div class="col-sm-6">
+        <div class="row">
+          <div class="col-sm-6">
+            <label>Blood Group</label>
+          </div>
+          <div class="col-sm-6">
+            <%= p.select :bloodGroup, options_for_select([['A+', 'A+'],['A-', 'A-'],['B+', 'B+'],['B-', 'B-'], ['AB+', 'AB+'], ['AB-', 'AB-'], ['O+', 'O+'], ['O-', 'O-']]),{ include_blank: 'Select' },{ class:'input-sm', required: true  } %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <h3><strong>Contact</strong></h3>
+    </div>
+    <hr class="divider">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="row">
+          <div class="col-sm-6">
+            <label>Phone#</label>
+          </div>
+          <div class="col-sm-6">
+            <!-- <input class="form-control input-sm" type="tel" value=""            id="phoneNumber" onchange="phoneNo()" required> -->
+             <%=p.telephone_field 'phone', class:'form-control input-sm', onchange:'phoneNo()' %>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="row">
+          <div class="col-sm-6">
+            <label>Email</label>
+          </div>
+
+          <div class="col-sm-6">
+          <!--   <input class="form-control input-sm" type="email" value="" id="uemail"/> -->
+             <%=p.email_field :email, class:'form-control input-sm'%>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="row">
+      <h3><strong>Address</strong></h3>
+    </div>
+    <hr class="divider">
+    <div class="row">
+      <div class="col-sm-3">
+        <label>Street Address</label>
+      </div>
+      <div class="col-sm-9">
+        <!-- <input class="form-control input-sm" type="text" value="" /> -->
+        <%=p.text_field 'streetAddress', class:'form-control input-sm'%>
+      </div>
+    </div>
+    <br/>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="row">
+          <div class="col-sm-6">
+            <label>City</label>
+          </div>
+          <div class="col-sm-6">
+           <!--  <input class="form-control input-sm" type="text" value="" /> -->
+            <%=p.text_field 'city', class:'form-control input-sm'%>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="row">
+          <div class="col-sm-6">
+            <label>Country</label>
+          </div>
+          <div class="col-sm-6">
+            <!-- <input class="form-control input-sm" type="text" value="" /> -->
+             <%=p.text_field 'country', class:'form-control input-sm'%>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br/>
+    <div class="row text-center">
+
+      <input type="submit" class="btn btn-primary"  value="Save" Font-Size="Large" BorderStyle="Solid"Font-Bold="true"/>
+
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,33 @@
+<div class="container">
+
+  <h3>Queries</h3>
+  <table class="table table-hover">
+
+    <thead>
+      <tr>
+      <th>Date</th>
+      <th>Query</th>
+      <th>Check</th>
+      </tr>
+    </thead>
+    <tbody>
+
+    <% @query_list.each do |q| %>
+      <tr>
+        <td><%=q.created_at%></td>
+        <td><%=q.subject%></td>
+        <td><%if session[:user_type] == 0%>
+            <%=link_to 'Go',{controller:'admin',action:'get_query',query_id:q.id}%>
+            <%elsif session[:user_type] == 1%>
+            <%=link_to 'Go',{controller:'doctor', action:'get_query',query_id:q.id}%>
+            <%end%>
+            </td>
+      </tr>
+    <%end%>
+
+    </tbody>
+
+  </table>
+  <%= will_paginate @query_list %></div>
+
+</div>

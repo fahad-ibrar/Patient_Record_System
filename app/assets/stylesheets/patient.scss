@@ -1,0 +1,16 @@
+// Place all the styles related to the patient controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+#patientpic{
+
+          max-width: 150px;
+}
+
+.transparent{
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}

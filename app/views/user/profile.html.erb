@@ -1,0 +1,643 @@
+<% @pageTitle="Profile"%>
+<!--   <div class="vd_title-section col-sm-12">
+    <div class="vd_panel-header no-subtitle">
+      <h2 id="userType" class="myFont"> <strong >User Profile</strong></h2>
+    </div>
+  </div>
+ -->
+  <div class="container">
+<!-- Trigger the modal with a button -->
+    <!--  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> -->
+    <!-- Modal -->
+    <div class="modal fade" id="aboutInfoModal" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Edit About</h4>
+          </div>
+          <!-- <form> -->
+          <%=form_for(:user, url: {action: "update_about"}, remote:  true) do |ea| %>
+            <div class="modal-body">
+
+                  <div class = "row">
+
+                    <div class = "col-sm-6">
+
+                      <label>About</label>
+
+                    </div>
+
+                    <div class = "col-sm-6">
+
+                      <%=ea.text_area :about, rows: 3, class: 'form-control input-sm'  %>
+                    </div>
+
+                  </div>
+
+
+
+             <!--    </div>
+              </div> -->
+
+            </div>
+
+          <div class="modal-footer">
+            <input type="submit" class="btn btn-primary"  value="Save" Font-Size="Large" BorderStyle="Solid"Font-Bold="true"/>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+          <%end%>
+          <!-- </form> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- Trigger the modal with a button -->
+    <!--  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> -->
+    <!-- Modal -->
+    <div class="modal fade" id="statusPicModal" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Edit</h4>
+          </div>
+          <%=form_for(:user, url: {action: "update_status_photo"}, html:{id:'editStatusPic', :multipart => true}) do |e| %>
+
+          <div class="modal-body">
+            <div class="row">
+
+              <div class="col-sm-2">
+                <label>Status</label>
+              </div>
+
+              <div class="col-sm-5">
+                <!-- <textarea>Hum Shareef Kya Huay Sara Zamana He Badmash Ho Gya</textarea> -->
+                <%=e.text_area :status, rows: 3, class: 'form-control input-sm'  %>
+              </div>
+            </div>
+
+            <div class="row">
+
+              <div class="col-sm-2">
+                <label>Photo</label>
+              </div>
+
+              <div class="col-sm-5">
+                <!-- <input id="input-1a" type="file" class="file" data-show-preview="true"> -->
+                <%= e.file_field :photo %>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <input type="submit" class="btn btn-primary"  value="Save" Font-Size="Large" BorderStyle="Solid"Font-Bold="true"/>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+          <!-- </form> -->
+          <%end%>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- Trigger the modal with a button -->
+    <!--  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> -->
+    <!-- Modal -->
+    <div class="modal fade" id="personalInfoModal" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Edit Personal Information</h4>
+          </div>
+          <!-- <form  role="form"> -->
+          <%=form_for(:user, :url=> {:action=>'update_personal_info'}, html:{onsubmit:'return submitForm()'}, remote:  true) do |upi| %>
+          <div class="modal-body">
+            <div class="row">
+
+              <div class="col-sm-6">
+
+                <div class="row">
+
+                  <div class="col-sm-6">
+
+                    <label>First Name</label>
+
+                  </div>
+
+                  <div class="col-sm-6">
+
+                    <!-- <input class="form-control input-sm" type="text" value="Fahad" required> -->
+                    <%= upi.text_field :firstName, class: 'form-control input-sm', required:true%>
+                  </div>
+
+                </div>
+
+              </div>
+
+              <div class="col-sm-6">
+
+                <div class="row">
+
+                  <div class="col-sm-6">
+
+                    <label>Last Name</label>
+
+                  </div>
+
+                  <div class="col-sm-6">
+
+                    <!-- <input class="form-control input-sm" type="text" value="Ibrar" required> -->
+                    <%= upi.text_field :lastName, class: 'form-control input-sm', required:true%>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+
+              <div class="row" style="margin-top:10px">
+
+                <div class="col-sm-6">
+
+                <div class="row">
+
+                  <div class="col-sm-6">
+
+                    <label>Gender</label>
+
+                  </div>
+
+                  <div class="col-sm-6">
+
+                  <!-- <select>
+                    <option value="1">Male</option>
+                    <option value="0">Female</option>
+                  </select> -->
+
+                  <%= upi.select :gender, options_for_select([['Male', true],['Female', false]],selected:@user.gender),{ include_blank: 'Select' },{ class:'input-sm',   required: true  } %>
+                  </div>
+
+                </div>
+
+              </div>
+
+              <div class="col-sm-6">
+                <div class="row">
+
+                  <div class="col-sm-6">
+
+                    <label>Birthday</label>
+
+                  </div>
+
+                  <div class="col-sm-6">
+                    <!-- <input class="form-control input-sm" type="date" value="" required> -->
+
+                    <%=upi.date_field :dob, class:'form-control input-sm', max: "#{Date.today.day}-#{Date.today.month}-#{Date.today.year-18}", required: true %>
+                  </div>
+
+                </div>
+              </div>
+              </div>
+
+            <div class="row" style="margin-top:10px">
+
+              <div class="col-sm-6">
+
+                <div class="row">
+
+                  <div class="col-sm-6">
+
+                    <label>City</label>
+
+                  </div>
+
+                  <div class="col-sm-6">
+
+                  <!-- <input class="form-control input-sm" type="text" value="Faisalabad"> -->
+
+                  <%=upi.text_field 'city', class:'form-control input-sm',value:@user.city%>
+                  </div>
+
+                </div>
+
+              </div>
+
+              <div class="col-sm-6">
+
+                <div class="row">
+
+                  <div class="col-sm-6">
+
+                    <label>Country</label>
+
+                  </div>
+
+                  <div class="col-sm-6">
+
+                  <!-- <input class="form-control input-sm" type="text" value="Pakistan" /> -->
+
+                  <%=upi.text_field 'country', class:'form-control input-sm'%>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <input type="submit" class="btn btn-primary"  value="Save" Font-Size="Large" BorderStyle="Solid"Font-Bold="true"/>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+          <%end%>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+<!-- Trigger the modal with a button -->
+    <!--  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> -->
+    <!-- Modal -->
+    <div class="modal fade" id="workInfoModal" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Edit Work Information</h4>
+          </div>
+          <!-- <form> -->
+          <%=form_for(:user, :url=> {:action=>'updateWorkInfo'}, html:{onsubmit:'return submitForm()'}) do |uwi| %>
+            <div class="modal-body">
+
+              <!-- <div class="row"> -->
+
+                <!-- <div class="col-sm-6"> -->
+
+                  <div class = "row">
+
+                    <div class = "col-sm-6">
+
+                      <label>Department</label>
+
+                    </div>
+
+                    <div class = "col-sm-6">
+
+                      <!-- <input class="form-control input-sm" type="text" required> -->
+
+                      <%= uwi.select :department_id, options_for_select(@departments, selected:@user.department_id), { include_blank: 'Select' },{ class:'input-sm', required: true  }%>
+
+                    </div>
+
+                  </div>
+
+                <!-- </div> -->
+
+               <!--  <div class="col-sm-6"> -->
+                  <div class = "row">
+
+                    <div class = "col-sm-6">
+
+                      <label>Designation</label>
+
+                    </div>
+
+                    <div class = "col-sm-4">
+
+                      <!-- <input class="form-control input-sm" type="text" required> -->
+                      <%=uwi.text_field 'designation', class:'form-control input-sm'%>
+
+                    </div>
+
+                  </div>
+
+
+
+                <!-- </div> -->
+              <!-- </div> -->
+
+            </div>
+
+          <div class="modal-footer">
+            <input type="submit" class="btn btn-primary"  value="Save" Font-Size="Large" BorderStyle="Solid"Font-Bold="true"/>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+          <%end%>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+<!-- Trigger the modal with a button -->
+    <!--  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> -->
+    <!-- Modal -->
+    <div class="modal fade" id="contactInfoModal" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Edit Contact Information</h4>
+          </div>
+          <!-- <form> -->
+          <%=form_for(:user, :url=> {:action=>'updateContactInfo'}, html:{onsubmit:'return submitForm()'}) do |uci| %>
+            <div class="modal-body">
+
+              <!-- <div class="row"> -->
+
+                <!-- <div class="col-sm-6">
+
+                  <div class = "row">
+
+                    <div class = "col-sm-6">
+
+                      <label>Email</label>
+
+                    </div>
+
+                    <div class = "col-sm-6">
+
+                      <input class="form-control input-sm" type="email"/>
+
+                    </div>
+
+                  </div>
+
+                </div> -->
+
+                <!-- <div class="col-sm-6"> -->
+                  <div class = "row">
+
+                    <div class = "col-sm-6">
+
+                      <label>Phone</label>
+
+                    </div>
+
+                    <div class = "col-sm-6">
+
+                      <%=uci.telephone_field 'phone', class:'form-control input-sm', onchange:'phoneNo()' %>
+
+                    </div>
+
+                  </div>
+
+
+
+             <!--    </div>
+              </div> -->
+
+            </div>
+
+          <div class="modal-footer">
+            <input type="submit" class="btn btn-primary"  value="Save" Font-Size="Large" BorderStyle="Solid"Font-Bold="true"/>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+          <%end%>
+          <!-- </form> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="container" style="margin-top:10px ">
+
+    <div class="col-sm-3">
+      <div class="panel widget light-widget panel-bd-top">
+        <div class="panel-heading no-title"> </div>
+        <div class="panel-body">
+          <div class="text-center vd_info-parent">
+
+
+          <%if @user.photo? %>
+          <%= image_tag (@user.photo_url.to_s),width:200 %>
+          <%end%>
+          </div>
+
+          <h2 class="font-semibold mgbt-xs-5"><%=@user.firstName%> <%=@user.lastName%></h2>
+
+          <h4><%if session[:user_type] == 0%>
+          <%="Admin"%>
+          <%elsif session[:user_type] == 1 %>
+          <%="Doctor"%>
+          <%end%></h4>
+          <h6><%=@user.status%></h6>
+          <!-- <a type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-pencil-square-o"></i></a> -->
+          <button type="button" class="btn btn-info" data-toggle="modal" data-target="#statusPicModal"><i class="fa fa-pencil-square-o"></i> Edit</button>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="col-sm-8">
+      <div class="panel">
+        <div class="page-header"><!-- about -->
+          <h1 id=><i class="fa fa-info-circle"></i>About <button class="transparent" data-toggle="modal" data-target="#aboutInfoModal" ><a>
+          <i class="fa fa-pencil-square-o"></i></a></button></h1>
+        </div>
+
+        <div id="divAbout" class="jumbotron"> <h4 id='about_box'><%=@user.about%></h4>
+        </div>
+        <div class="panel panel-default">
+          <!-- Default panel contents -->
+          <div class="panel-heading"><h5><strong>Personal Information
+          <button class="transparent" data-toggle="modal" data-target="#personalInfoModal" ><a>
+          <i class="fa fa-pencil-square-o"></i></a></button></strong></h5></div>
+          <div class="panel-body"><!-- Personal Information -->
+            <div class="row"> <!-- row1 -->
+
+              <div class="col-sm-6">
+
+                <div class="row">
+                  <div class="col-sm-6">
+
+                    <label>First Name</label>
+
+                  </div>
+
+                  <div id='firstName' class="col-sm-6"><%=@user.firstName%></div>
+                </div>
+
+              </div>
+
+              <div class="col-sm-6">
+
+                <div class="row">
+                  <div class="col-sm-6">
+
+                    <label>Last Name</label>
+
+                  </div>
+
+                  <div id='lastName' class="col-sm-6"><%=@user.lastName%></div>
+                </div>
+
+              </div>
+
+            </div> <!-- row1 -->
+
+            <div class="row"> <!-- row2 -->
+
+              <div class="col-sm-6">
+
+                <div class="row">
+                  <div class="col-sm-6">
+
+                    <label>Gender</label>
+
+                  </div>
+
+                  <div id='gender' class="col-sm-6"><%=@user.gender ? 'Male':'Female' %></div>
+                </div>
+
+              </div>
+
+              <div class="col-sm-6">
+
+                <div class="row">
+                  <div class="col-sm-6">
+
+                    <label>Birthday</label>
+
+                  </div>
+
+                  <div id='dob' class="col-sm-6"><%=@user.dob%></div>
+                </div>
+
+
+              </div>
+
+            </div><!-- row2 -->
+
+            <div class="row"><!-- row3 -->
+
+              <div class="col-sm-6">
+
+                <div class="row">
+                  <div class="col-sm-6">
+
+                    <label>City</label>
+
+                  </div>
+
+                  <div id='city' class="col-sm-6"><%=@user.city%></div>
+                </div>
+
+              </div>
+
+              <div class="col-sm-6">
+
+                <div class="row">
+                  <div class="col-sm-6">
+
+                    <label>Country</label>
+
+                  </div>
+
+                  <div id='country' class="col-sm-6"><%=@user.country%></div>
+                </div>
+
+              </div>
+
+            </div><!-- row3 -->
+          </div>
+        </div><!-- personal-info panel body -->
+
+        <div class="panel panel-default">
+          <div class="panel-heading"><h5><strong>Work Information <button class="transparent" data-toggle="modal" data-target="#workInfoModal" ><a>
+          <i class="fa fa-pencil-square-o"></i></a></button></strong></h5></div>
+          <div class="panel-body"><!-- Work Information -->
+            <div class="row"><!-- row1 -->
+
+              <div class="col-sm-6">
+
+                <div class="row">
+
+                  <div class="col-sm-6">
+                    <label>Department</label>
+                  </div>
+
+                  <div class="col-sm-6"><%=@dept%></div>
+
+
+
+                </div>
+              </div>
+
+              <div class="col-sm-6">
+
+                <div class="row">
+
+                  <div class="col-sm-6">
+                    <label>Designation</label>
+                  </div>
+
+                  <div class="col-sm-6"><%=@user.designation%></div>
+
+
+
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div><!-- Work Information -->
+
+
+        <div class="panel panel-default"> <!-- Contact Information -->
+          <div class="panel-heading"><h5><strong>Contact Information <button class="transparent" data-toggle="modal" data-target="#contactInfoModal" ><a>
+          <i class="fa fa-pencil-square-o"></i></a></button></strong></h5></div>
+          <div class="panel-body"><!-- Contact Information -->
+            <div class="row"><!-- row1 -->
+
+              <div class="col-sm-6">
+
+                <div class="row">
+
+                  <div class="col-sm-6"><label>Email</label></div>
+
+                  <div class="col-sm-6">
+                    <a href="mailto:fahad.ibrar228@gmail.com"><%=@user.email%></a>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="col-sm-6">
+
+                <div class="row">
+
+                  <div class="col-sm-6"><label>Phone</label></div>
+
+                  <div class="col-sm-6"><%=@user.phone%></div>
+
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>

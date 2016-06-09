@@ -1,0 +1,110 @@
+/* line 1, /mnt/hgfs/Ubuntu_Data/Project/Patient_Record_System/app/assets/stylesheets/profile.scss */
+body {
+  background-color: #f0f0f0;
+  /* font-size: 13px;
+   font-family: 'Open Sans','arial';
+   line-height: 23px;
+   font-weight: 400;*/
+}
+
+/* line 8, /mnt/hgfs/Ubuntu_Data/Project/Patient_Record_System/app/assets/stylesheets/profile.scss */
+img {
+  /* max-width: 100%;*/
+}
+
+/* line 12, /mnt/hgfs/Ubuntu_Data/Project/Patient_Record_System/app/assets/stylesheets/profile.scss */
+#userPhoto {
+  max-width: 100%;
+}
+
+/* line 18, /mnt/hgfs/Ubuntu_Data/Project/Patient_Record_System/app/assets/stylesheets/profile.scss */
+.panel-bd-top {
+  border-top: 3px solid #1fae66;
+}
+
+/* line 22, /mnt/hgfs/Ubuntu_Data/Project/Patient_Record_System/app/assets/stylesheets/profile.scss */
+.panel .panel-heading {
+  position: relative;
+  padding: 7px 15px;
+}
+
+/* line 27, /mnt/hgfs/Ubuntu_Data/Project/Patient_Record_System/app/assets/stylesheets/profile.scss */
+.widget {
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  position: relative;
+}
+
+/* line 36, /mnt/hgfs/Ubuntu_Data/Project/Patient_Record_System/app/assets/stylesheets/profile.scss */
+.widget:before, .widget:after {
+  content: " ";
+  display: table;
+}
+
+/* line 41, /mnt/hgfs/Ubuntu_Data/Project/Patient_Record_System/app/assets/stylesheets/profile.scss */
+.widget:after {
+  clear: both;
+}
+
+/* line 45, /mnt/hgfs/Ubuntu_Data/Project/Patient_Record_System/app/assets/stylesheets/profile.scss */
+.panel {
+  background: none;
+  margin-bottom: 20px;
+  background-color: #fff;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+/* line 56, /mnt/hgfs/Ubuntu_Data/Project/Patient_Record_System/app/assets/stylesheets/profile.scss */
+.mgtp-20 {
+  margin-top: 20px !important;
+}
+
+/* line 69, /mnt/hgfs/Ubuntu_Data/Project/Patient_Record_System/app/assets/stylesheets/profile.scss */
+.vd_title-section {
+  background: transparent;
+  opacity: 0.3;
+  background-color: rgba(20, 20, 20, 0.9);
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: 1px solid #E5E5E5;
+  border-bottom: 1px solid #E5E5E5;
+}
+
+/* line 79, /mnt/hgfs/Ubuntu_Data/Project/Patient_Record_System/app/assets/stylesheets/profile.scss */
+button {
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+}
+
+/* line 92, /mnt/hgfs/Ubuntu_Data/Project/Patient_Record_System/app/assets/stylesheets/profile.scss */
+.myFont {
+  color: #f0f0f0;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+/* line 97, /mnt/hgfs/Ubuntu_Data/Project/Patient_Record_System/app/assets/stylesheets/profile.scss */
+#divAbout {
+  background-color: transparent;
+}
+
+/* line 102, /mnt/hgfs/Ubuntu_Data/Project/Patient_Record_System/app/assets/stylesheets/profile.scss */
+.page-header {
+  padding-bottom: 9px;
+  margin: 40px 0 20px;
+  border-bottom: 3px solid #4C4C4D;
+}
+
+/* line 108, /mnt/hgfs/Ubuntu_Data/Project/Patient_Record_System/app/assets/stylesheets/profile.scss */
+textarea {
+  resize: none;
+}

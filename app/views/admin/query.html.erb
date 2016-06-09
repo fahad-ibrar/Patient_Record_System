@@ -1,0 +1,39 @@
+<div class="container">
+    <h3><strong>Received Query</strong></h3>
+    <%=link_to 'Resolved' ,{controller:'admin',action:'resolve_query', id:params[:query_id]}%>
+    <br>
+    <div class="row">
+
+      <div class="col-sm-2">
+        <label>Date:</label>
+      </div>
+
+      <div class="col-sm-2">
+        <%=@query.created_at%>
+      </div>
+
+    </div>
+    <div class="row">
+    <div class="col-sm-2">
+      <label>Subject:</label>
+    </div>
+    <div class="col-sm-8">
+
+      <textarea rows="3" cols= "50" readonly ><%=@query.subject%></textarea>
+    </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+
+    <div class="col-sm-2">
+      <label>Message:</label>
+    </div>
+    <div class="col-sm-8">
+      <textarea rows="15" cols= "50" readonly ><%=@query.message%></textarea>
+    </div>
+    </div>
+  <br>
+
+</div>

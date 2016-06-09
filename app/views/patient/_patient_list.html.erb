@@ -1,0 +1,51 @@
+<%= form_for(:patient) do %>
+<table id="patient_table" class="table table-hover">
+
+    <thead>
+      <tr>
+        <th>Patient ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Gender</th>
+        <th>Birthday</th>
+        <th>Contact</th>
+        <th>Email</th>
+        <th>Photo</th>
+        <th>Visit</th>
+        <%if session[:user_type] ==0%>
+        <th>Delete</th>
+        <th>Select</th>
+        <%end%>
+      </tr>
+    </thead>
+
+    <tbody id='table_body'>
+      <% @patients.each do |p| %>
+        <tr id=<%="id_#{p.id}"%>>
+          <td><%= p.id%></td>
+          <td><%= p.firstName%></td>
+          <td><%= p.lastName%></td>
+          <td><% if p.gender == false%>
+              <%= 'Female' %>
+              <%else%>
+              <%= 'Male'%>
+              <%end%></td>
+          <td><%=p.dob%></td>
+          <td><%= p.phone%></td>
+          <td><%= p.email%></td>
+          <td><%if p.photo? %>
+              <%= image_tag (p.photo_url.to_s),height:50 %>
+              <%end%></td>
+          <td><%= link_to('Visit',{action:'profile',id:p.id})%></td>
+          <%if session[:user_type] ==0%>
+          <td><%= link_to('Delete',{action:'delete',id:p.id},remote:true)%></td>
+          <td><%=check_box_tag "patient_ids[]",p.id%></td>
+          <%end%>
+        </tr>
+      <%end%>
+    </tbody>
+
+</table>
+<%= submit_tag "Delete"%>
+  <%end%>
+<div id="paging"><%= will_paginate @patients %></div>

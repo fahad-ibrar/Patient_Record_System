@@ -1,0 +1,618 @@
+
+<ul class="nav nav-tabs">
+  <li class="active"><a data-toggle="tab" href="#Details">Patient Details</a></li>
+  <li><a data-toggle="tab" href="#History">Patient History</a>
+  </li>
+  <li><a data-toggle="tab" href="#Diagnosis">Doctor Diagnosis</a></li>
+  <li><a data-toggle="tab" href="#Comments">Comments</a></li>
+</ul>
+
+<div class="tab-content">
+  <div class="container">
+
+    <!-- Trigger the modal with a button -->
+    <!--  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> -->
+    <!-- Modal -->
+    <div class="modal fade" id="picModal" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Edit</h4>
+          </div>
+          <%=form_for(:patient, :url=> {:action=>'updatePhoto', id:params[:id]}, html:{onsubmit:'return submitForm()', :multipart => true}) do |e| %>
+
+          <div class="modal-body">
+
+            <div class="row">
+
+              <div class="col-sm-2">
+                <label>Photo</label>
+              </div>
+
+              <div class="col-sm-5">
+                <!-- <input id="input-1a" type="file" class="file" data-show-preview="true"> -->
+                <%= e.file_field :photo %>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <input type="submit" class="btn btn-primary"  value="Save" Font-Size="Large" BorderStyle="Solid"Font-Bold="true"/>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+          <!-- </form> -->
+          <%end%>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- Trigger the modal with a button -->
+    <!--  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> -->
+    <!-- Modal -->
+    <div class="modal fade" id="personalInfoModal" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Edit Personal Information</h4>
+          </div>
+          <!-- <form  role="form"> -->
+          <%=form_for(:patient, :url=> {:action=>'updatePersonalInfo', id:params[:id]}, html:{onsubmit:'return submitForm()'}) do |upi| %>
+          <div class="modal-body">
+            <div class="row">
+
+              <div class="col-sm-6">
+
+                <div class="row">
+
+                  <div class="col-sm-6">
+
+                    <label>First Name</label>
+
+                  </div>
+
+                  <div class="col-sm-6">
+
+                    <!-- <input class="form-control input-sm" type="text" value="Fahad" required> -->
+                    <%= upi.text_field :firstName, class: 'form-control input-sm', required:true%>
+                  </div>
+
+                </div>
+
+              </div>
+
+              <div class="col-sm-6">
+
+                <div class="row">
+
+                  <div class="col-sm-6">
+
+                    <label>Last Name</label>
+
+                  </div>
+
+                  <div class="col-sm-6">
+
+                    <!-- <input class="form-control input-sm" type="text" value="Ibrar" required> -->
+                    <%= upi.text_field :lastName, class: 'form-control input-sm', required:true%>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+
+              <div class="row" style="margin-top:10px">
+
+                <div class="col-sm-6">
+
+                <div class="row">
+
+                  <div class="col-sm-6">
+
+                    <label>Gender</label>
+
+                  </div>
+
+                  <div class="col-sm-6">
+
+                  <!-- <select>
+                    <option value="1">Male</option>
+                    <option value="0">Female</option>
+                  </select> -->
+
+                  <%= upi.select :gender, options_for_select([['Male', true],['Female', false]],selected:@patient.gender),{ include_blank: 'Select' },{ class:'input-sm',   required: true  } %>
+                  </div>
+
+                </div>
+
+              </div>
+
+              <div class="col-sm-6">
+                <div class="row">
+
+                  <div class="col-sm-6">
+
+                    <label>Birthday</label>
+
+                  </div>
+
+                  <div class="col-sm-6">
+                    <!-- <input class="form-control input-sm" type="date" value="" required> -->
+
+                    <%=upi.date_field :dob, class:'form-control input-sm', max: "#{Date.today.day}-#{Date.today.month}-#{Date.today.year-18}", required: true %>
+                  </div>
+
+                </div>
+              </div>
+              </div>
+
+              <div class="row" style="margin-top:10px">
+                <div class="col-sm-6">
+                <div class="row">
+
+                  <div class="col-sm-6">
+
+                    <label>Blood Group</label>
+
+                  </div>
+
+                  <div class="col-sm-6">
+                    <!-- <input class="form-control input-sm" type="date" value="" required> -->
+
+                    <%= upi.select :bloodGroup, options_for_select([['A+', 'A+'],['A-', 'A-'],['B+', 'B+'],['B-', 'B-'], ['AB+', 'AB+'], ['AB-', 'AB-'], ['O+', 'O+'], ['O-', 'O-']],selected:@patient.bloodGroup),{ include_blank: 'Select' },{ class:'input-sm', required: true  } %>
+                  </div>
+
+                </div>
+              </div>
+              </div>
+
+          </div>
+          <div class="modal-footer">
+            <input type="submit" class="btn btn-primary"  value="Save" Font-Size="Large" BorderStyle="Solid"Font-Bold="true"/>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+          <%end%>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+<!-- Trigger the modal with a button -->
+    <!--  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> -->
+    <!-- Modal -->
+    <div class="modal fade" id="contactInfoModal" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Edit Contact Information</h4>
+          </div>
+          <!-- <form> -->
+          <%=form_for(:patient, :url=> {:action=>'updateContactInfo', id:params[:id]}, html:{onsubmit:'return submitForm()'}) do |uci| %>
+            <div class="modal-body">
+
+              <div class="row">
+
+                <div class="col-sm-6">
+
+                  <div class = "row">
+
+                    <div class = "col-sm-6">
+
+                      <label>Email</label>
+
+                    </div>
+
+                    <div class = "col-sm-6">
+
+                      <%=uci.email_field :email, class:'form-control input-sm' %>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+                <div class="col-sm-6">
+                  <div class = "row">
+
+                    <div class = "col-sm-6">
+
+                      <label>Phone</label>
+
+                    </div>
+
+                    <div class = "col-sm-6">
+
+                      <%=uci.telephone_field 'phone', class:'form-control input-sm', onchange:'phoneNo()' %>
+
+                    </div>
+
+                  </div>
+
+
+
+                </div>
+              </div>
+
+            </div>
+
+          <div class="modal-footer">
+            <input type="submit" class="btn btn-primary"  value="Save" Font-Size="Large" BorderStyle="Solid"Font-Bold="true"/>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+          <%end%>
+          <!-- </form> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- Trigger the modal with a button -->
+    <!--  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> -->
+    <!-- Modal -->
+    <div class="modal fade" id="addressInfoModal" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Edit Address Information</h4>
+          </div>
+          <!-- <form  role="form"> -->
+          <%=form_for(:patient, :url=> {:action=>'updateAddressInfo', id:params[:id]}, html:{onsubmit:'return submitForm()'}) do |pai| %>
+          <div class="modal-body">
+
+             <div class="row">
+
+              <div class="col-sm-3">
+
+
+
+
+
+                    <label>Street Address</label>
+
+
+              </div>
+                  <div class="col-sm-9">
+
+                  <!-- <input class="form-control input-sm" type="text" value="Pakistan" /> -->
+
+                  <%=pai.text_field 'streetAddress', class:'form-control input-sm'%>
+                  </div>
+
+
+
+
+
+            </div>
+
+            <div class="row" style="margin-top:10px">
+
+              <div class="col-sm-6">
+
+                <div class="row">
+
+                  <div class="col-sm-6">
+
+                    <label>City</label>
+
+                  </div>
+
+                  <div class="col-sm-6">
+
+                  <!-- <input class="form-control input-sm" type="text" value="Faisalabad"> -->
+
+                  <%=pai.text_field 'city', class:'form-control input-sm'%>
+                  </div>
+
+                </div>
+
+              </div>
+
+              <div class="col-sm-6">
+
+                <div class="row">
+
+                  <div class="col-sm-6">
+
+                    <label>Country</label>
+
+                  </div>
+
+                  <div class="col-sm-6">
+
+                  <!-- <input class="form-control input-sm" type="text" value="Pakistan" /> -->
+
+                  <%=pai.text_field 'country', class:'form-control input-sm'%>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <input type="submit" class="btn btn-primary"  value="Save" Font-Size="Large" BorderStyle="Solid"Font-Bold="true"/>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+          <%end%>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div id="Details" class="tab-pane fade in active">
+    <h3>Patient Details</h3>
+    <div id="addPatient" class="container">
+      <div class="row">
+        <h3><strong>Photo</strong><button class="transparent" data-toggle="modal" data-target="#picModal" ><a>
+          <i class="fa fa-pencil-square-o"></i></a></button></h3>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 text-center" >
+            <%if @patient.photo? %>
+          <%= image_tag (@patient.photo_url.to_s),width:200 %>
+          <%end%>
+        </div>
+      </div>
+      <div class="row">
+        <h3><strong>Particulars</strong><button class="transparent" data-toggle="modal" data-target="#personalInfoModal" ><a>
+          <i class="fa fa-pencil-square-o"></i></a></button></h3>
+      </div>
+      <hr class="divider">
+      <div class="row">
+        <div class="col-sm-4">
+          <label>Title</label>
+        </div>
+        <div class="col-sm-4">
+          <label>First Name</label>
+        </div>
+        <div class="col-sm-4">
+          <label>Last Name</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <span><%=@patient.title%></span>
+        </div>
+        <div class="col-sm-4">
+          <span><%=@patient.firstName%></span>
+        </div>
+        <div class="col-sm-4">
+          <span><%=@patient.lastName%></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <label>Gender</label>
+        </div>
+        <div class="col-sm-4">
+          <label>Date of Birth</label>
+        </div>
+        <div class="col-sm-4">
+          <label>Blood Group</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <span><% if @patient.gender == false%>
+                  <%= 'Female' %>
+                  <%else%>
+                  <%= 'Male'%>
+                  <%end%></span>
+        </div>
+        <div class="col-sm-4">
+          <span><%=@patient.dob%></span>
+        </div>
+        <div class="col-sm-4">
+          <span><%=@patient.bloodGroup%></span>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <h3><strong>Contact</strong><button class="transparent" data-toggle="modal" data-target="#contactInfoModal" ><a>
+          <i class="fa fa-pencil-square-o"></i></a></button></h3>
+      </div>
+      <hr class="divider">
+      <div class="row">
+        <div class="col-sm-4">
+          <label>Phone No.</label>
+        </div>
+        <div class="col-sm-4">
+          <label>Email</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <span><%=@patient.phone%></span>
+        </div>
+
+        <div class="col-sm-4">
+          <span><%=@patient.email%></span>
+        </div>
+      </div>
+
+      <div class="row">
+        <h3><strong>Address</strong><button class="transparent" data-toggle="modal" data-target="#addressInfoModal" ><a>
+          <i class="fa fa-pencil-square-o"></i></a></button></h3>
+      </div>
+      <hr class="divider">
+      <div class="row">
+        <div class="col-sm-4">
+          <label>Street Address</label>
+        </div>
+
+        <div class="col-sm-4">
+          <label>City</label>
+        </div>
+
+        <div class="col-sm-4">
+          <label>Country</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <span><%=@patient.streetAddress%></span>
+        </div>
+
+        <div class="col-sm-4">
+          <span><%=@patient.city%></span>
+        </div>
+
+        <div class="col-sm-4">
+          <span><%=@patient.country%></span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div id="History" class="tab-pane fade">
+    <div class="container">
+    <div id="editHistoryModal">
+    <%= render partial:'addEditModal', locals: {action_name:'editHistory', modal_id:'editHistory',modal_title:'Edit History',modal_form_id:'editHistory_form',type:'patient_history'}%>
+    </div>
+
+      <%= render partial:'addEditModal', locals: {action_name:'add_history', modal_id:'addHistoryModel',modal_title:'Add History',modal_form_id:'addHistory_form',type:'patient_history'}%>
+
+
+
+  </div>
+
+    <h3>Patient History</h3>
+     <button class="btn btn-primary" data-toggle="modal" data-target="#addHistoryModel" style="margin-left: 10px;">Add</button>
+    <div id='patientHistory'>
+
+        <%= render 'patientHistory' %>
+
+    </div>
+
+  </div>
+  <div id="Diagnosis" class="tab-pane fade">
+
+      <div class="container">
+
+
+    <div id="editDiagnosisModal">
+    <%= render partial:'addEditModal', locals: {action_name:'editDiagnosis', modal_id:'editDiagnosis',modal_title:'Edit Diagnosis',modal_form_id:'editDiagnosis_form', type:'doctor_diagnosis'}%>
+    </div>
+
+      <%= render partial:'addEditModal', locals: {action_name:'add_Diagnosis', modal_id:'addDiagnosisModel',modal_title:'Add Diagnosis',modal_form_id:'addDiagnosis_form', type:'doctor_diagnosis'}%>
+  </div>
+    <h3>Doctor Diagnosis</h3>
+    <button class="btn btn-primary" data-toggle="modal" data-target="#addDiagnosisModel" style="margin-left: 10px;">Add</button>
+    <div id='doctorDiagnosis'>
+      <%= render 'doctorDiagnosis' %>
+    </div>
+
+
+  </div>
+
+  <div id="Comments" class="tab-pane fade">
+
+      <div class="container">
+
+    <!-- Trigger the modal with a button -->
+    <!--  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> -->
+    <!-- Modal -->
+    <div class="modal fade" id="editComment" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Edit</h4>
+          </div>
+          <%=form_for(:comment, :url=> {:action=>'editComment', id:params[:id]}, html: {id: "editComment_form" } ) do |eh| %>
+
+          <div class="modal-body">
+
+            <div class="row">
+
+              <div class="col-sm-2">
+                <label>Detail</label>
+              </div>
+
+              <div class="col-sm-5">
+                <!-- <input id="input-1a" type="file" class="file" data-show-preview="true"> -->
+                <%=eh.text_field 'detail', class:'form-control input-sm'%>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <input type="submit" class="btn btn-primary"  value="Save" Font-Size="Large" BorderStyle="Solid"Font-Bold="true"/>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+          <!-- </form> -->
+          <%end%>
+        </div>
+
+      </div>
+    </div>
+  </div>
+    <h3>Comments</h3>
+
+    <%= form_for(:patient, :url=> {:controller=>'patient',:action=>'deleteComments',id:params[:id]}) do %>
+
+
+    <table  class="table table-hover">
+    <thead>
+        <tr>
+          <th>Date</th>
+          <th>Doctor</th>
+          <th>Detail</th>
+          <th>Delete</th>
+          <th>Edit</th>
+          <th>Select</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+          <% @patientComments.each do |p| %>
+            <tr>
+              <td><%= p.date%></td>
+              <td><%=p.user.firstName%> <%=p.user.lastName%></td>
+              <td><%= p.detail%></td>
+
+              <td><%= link_to('Delete',{action:'deleteComment',id:p.patient_id,comment_id:p.id})%></td>
+
+              <td><%= link_to "Edit", "#editComment", onClick: "document.getElementById('comment_detail').setAttribute('value', '#{p.detail}'); document.getElementById('editComment_form').setAttribute('action', document.getElementById('editComment_form').getAttribute('action')+'?comment_id=#{p.id}'); ", "data-toggle" => "modal" , 'data-target' => '#editComment' %></td>
+
+              <td><%=check_box_tag "patientComment_ids[]",p.id%></td>
+            </tr>
+
+          <%end%>
+
+
+        </tbody>
+    </table>
+      <%= submit_tag "Delete"%>
+    <%end%>
+  </div>
+
+</div>

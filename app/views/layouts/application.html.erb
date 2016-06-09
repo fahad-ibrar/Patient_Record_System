@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= @pageTitle || "PatientRecordSystem"%> </title>
+
+
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+
+
+  <%if params[:controller]== "user" && params[:action]=="signup"%>
+  <%= stylesheet_link_tag 'signup', media: 'all','data-turbolinks-track' => true %>
+  <%end%>
+
+  <%if params[:controller]== "user" && params[:action]=="login"%>
+  <%= stylesheet_link_tag 'login', media: 'all','data-turbolinks-track' => true %>
+  <%end%>
+
+
+
+
+
+</head>
+<body>
+
+<%=yield%>
+</body>
+</html>

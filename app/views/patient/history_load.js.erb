@@ -1,0 +1,5 @@
+// alert(document.getElementById("patient_history_detail").innerHTML);
+$("patient_history_detail").val('');
+$("#editHistory").modal('hide');
+$("#addHistoryModel").modal('hide');
+$("#patientHistory").html("<%= escape_javascript(render("patientHistory"))%>");

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= @pageTitle || "PatientRecordSystem"%> </title>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+    <%= csrf_meta_tags %>
+
+    <%if params[:controller]== "user" && params[:action]=="profile"%>
+      <%= stylesheet_link_tag 'profile', media: 'all', 'data-turbolinks-track' => true %>
+    <%end%>
+
+    <%if params[:controller]== "patient" && params[:action]=="addPatient"%>
+      <%= stylesheet_link_tag 'addpatient', media: 'all','data-turbolinks-track' => true %>
+    <%end%>
+
+    <%if params[:controller]== "patient" && params[:action]=="profile"%>
+      <%= stylesheet_link_tag 'patient', media: 'all','data-turbolinks-track' => true %>
+    <%end%>
+
+
+
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Patient Record System</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+
+            <%=content_tag('li', link_to('Home',{:controller=> if session[:userType]==0 then 'admin' else 'doctor' end, :action=>'home'},{style:"font-weight: bold;"}),class:if params[:action]=='home' then 'active' else '' end)%>
+            <!-- <li ></li> -->
+            <!-- <a href="#"><strong>Home</strong></a> -->
+
+            <%=content_tag('li', link_to('Profile',{:controller=>'user', :action=>'profile', id:session[:user_id]},{style:"font-weight: bold;"}),class:if params[:action]=='profile' then 'active' else '' end)%>
+
+            <%=content_tag('li', link_to('Queries',{:controller=>'user', :action=>'query_list'},{style:"font-weight: bold;"}),class:if params[:action]=='query_list' then 'active' else '' end)%>
+
+              <!-- <ul class="dropdown-menu">
+                <li><a href="#">Page 1-1</a></li>
+                <li><a href="#">Page 1-2</a></li>
+                <li><a href="#">Page 1-3</a></li>
+              </ul> -->
+
+            <!-- <li><a href="#">Page 2</a></li>
+            <li><a href="#">Page 3</a></li> -->
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <!-- <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> -->
+
+
+            <li><%= link_to({:controller=>'user', :action=>'logout'}) do %>
+            <strong>LogOut </strong><span class="glyphicon glyphicon-log-out"></span>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+  </head>
+  <body>
+
+    <%=yield%>
+  </body>
+</html>

@@ -1,0 +1,111 @@
+body {
+    background-color: #f0f0f0;
+   /* font-size: 13px;
+    font-family: 'Open Sans','arial';
+    line-height: 23px;
+    font-weight: 400;*/
+}
+img {
+   /* max-width: 100%;*/
+}
+
+#userPhoto{
+
+max-width:100%;
+
+}
+
+.panel-bd-top {
+    border-top: 3px solid #1fae66;
+}
+
+.panel .panel-heading {
+    position: relative;
+    padding: 7px 15px;
+}
+
+.widget {
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+    box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    position: relative;
+}
+
+.widget:before, .widget:after {
+    content: " ";
+    display: table;
+}
+
+.widget:after {
+    clear: both;
+}
+
+.panel {
+    background: none;
+
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: 0 1px 1px rgba(0,0,0,.05)
+}
+
+.mgtp-20 {
+    margin-top: 20px !important;
+}
+
+#divTotalInfo{
+
+
+}
+
+#divProfilePicture{
+
+}
+
+.vd_title-section {
+    background: transparent;
+    opacity: 0.3;
+    background-color : rgba(20,20,20,0.9);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid #E5E5E5;
+    border-bottom: 1px solid #E5E5E5;
+}
+
+button {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}
+
+#profilePicture{
+}
+
+
+.myFont{
+
+  color: #f0f0f0;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+#divAbout{
+
+background-color: transparent;
+}
+
+.page-header {
+    padding-bottom: 9px;
+    margin: 40px 0 20px;
+    border-bottom: 3px solid #4C4C4D;
+}
+
+textarea {
+   resize: none;
+}
+

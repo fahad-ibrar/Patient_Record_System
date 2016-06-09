@@ -1,0 +1,18 @@
+<% @pageTitle="Home"%>
+
+<div class="container">
+  <table class="table table-hover">
+    <caption><h3><strong>Actions</strong></h3></caption>
+    <tr>
+      <td>
+        <h4><i class="fa fa-user"></i><%= link_to(' Profile',{:controller=>'user', :action=>'profile'}) %></h4>
+      </td>
+    </tr>
+    <tr>
+      <td>
+       <h4> <i class="fa fa-users"></i><%= link_to(' Show Patient',{:controller=>'patient', :action=>'patientList'}) %></h4>
+      </td>
+    </tr>
+
+  </table>
+</div>

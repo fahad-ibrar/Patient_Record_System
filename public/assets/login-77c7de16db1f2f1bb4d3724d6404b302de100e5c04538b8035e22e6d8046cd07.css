@@ -1,0 +1,19 @@
+/* line 1, /mnt/hgfs/Ubuntu_Data/Project/Patient_Record_System/app/assets/stylesheets/login.scss */
+#login {
+  margin-top: 10%;
+  margin-bottom: 5%;
+  max-width: 300px;
+  max-height: 400px;
+  background-color: rgba(111, 3, 146, 0.1);
+  border-radius: 4px;
+  border-style: ridge;
+  box-shadow: 5px 5px 3px lightgrey;
+  border-width: 2px;
+  padding: 20px;
+}
+
+/* line 19, /mnt/hgfs/Ubuntu_Data/Project/Patient_Record_System/app/assets/stylesheets/login.scss */
+.divider {
+  border-color: #928D8D;
+  border-width: initial;
+}

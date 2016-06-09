@@ -1,0 +1,65 @@
+/****************For Sign Up**********/
+/* line 3, /mnt/hgfs/Ubuntu_Data/Project/Patient_Record_System/app/assets/stylesheets/signup.scss */
+#signUp {
+  margin-top: 5%;
+  margin-bottom: 5%;
+  max-width: 700px;
+  max-height: 2000px;
+  background-color: rgba(111, 3, 146, 0.1);
+  border-radius: 4px;
+  border-style: ridge;
+  box-shadow: 5px 5px 3px lightgrey;
+  border-width: 2px;
+  padding: 20px;
+}
+
+/* line 22, /mnt/hgfs/Ubuntu_Data/Project/Patient_Record_System/app/assets/stylesheets/signup.scss */
+.divPlace {
+  float: left;
+  /* white-space: nowrap;*/
+}
+
+/* line 28, /mnt/hgfs/Ubuntu_Data/Project/Patient_Record_System/app/assets/stylesheets/signup.scss */
+.floatClear {
+  clear: left;
+  /* white-space: nowrap;*/
+}
+
+/* line 34, /mnt/hgfs/Ubuntu_Data/Project/Patient_Record_System/app/assets/stylesheets/signup.scss */
+#passLength {
+  font-size: 12px;
+}
+
+/* line 39, /mnt/hgfs/Ubuntu_Data/Project/Patient_Record_System/app/assets/stylesheets/signup.scss */
+#divFirstName {
+  margin-right: 80px;
+}
+
+/* line 44, /mnt/hgfs/Ubuntu_Data/Project/Patient_Record_System/app/assets/stylesheets/signup.scss */
+#divPassword {
+  margin-right: 10px;
+}
+
+/* line 49, /mnt/hgfs/Ubuntu_Data/Project/Patient_Record_System/app/assets/stylesheets/signup.scss */
+#divAddress {
+  margin-right: 150px;
+}
+
+/* line 54, /mnt/hgfs/Ubuntu_Data/Project/Patient_Record_System/app/assets/stylesheets/signup.scss */
+#registerButton {
+  margin-left: 35%;
+  margin-bottom: 5%;
+}
+
+/* line 60, /mnt/hgfs/Ubuntu_Data/Project/Patient_Record_System/app/assets/stylesheets/signup.scss */
+#profilePic {
+  max-width: 130px;
+  float: right;
+  margin-right: 30px;
+}
+
+/* line 66, /mnt/hgfs/Ubuntu_Data/Project/Patient_Record_System/app/assets/stylesheets/signup.scss */
+.divider {
+  border-color: #928D8D;
+  border-width: initial;
+}

@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="row"><h3><strong>Doctor Query Form</strong></h3>
+    <a href="/doctor/home"><button class="btn btn-danger" Font-Size="Large" BorderStyle="Solid"Font-Bold="true">Discard</button></a></div>
+    <br>
+  <%=form_for :query, :url=>{:action=>'submit_query'} do |q| %>
+
+
+    <div class="row">
+    <div class="col-sm-2">
+      <label>Subject:</label>
+    </div>
+    <div class="col-sm-8">
+      <%=q.text_field :subject, class: 'form-control input-sm', required:true%>
+    </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+
+    <div class="col-sm-2">
+      <label>Message:</label>
+    </div>
+    <div class="col-sm-8">
+      <%=q.text_area :message, class: 'form-control input-sm', rows: 15, required:true%>
+    </div>
+    </div>
+  <br>
+    <div class="row text-center">
+      <input type="submit" class="btn btn-primary"  value="Send" Font-Size="Large" BorderStyle="Solid"Font-Bold="true"/>
+
+
+    </div>
+
+  <%end%>
+
+
+</div>

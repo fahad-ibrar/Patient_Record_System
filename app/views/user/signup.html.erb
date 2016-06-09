@@ -1,0 +1,271 @@
+<% @pageTitle="SignUp"%>
+
+<%=form_for(:user, :url=> {:action=>'create',type:params[:type]}, html:{onsubmit:'return submitForm()', :multipart => true}) do |u| %>
+  <div id="signUp" class="container">
+    <%if params[:type] == '0'%>
+      <%=content_tag :h1,"Admin Sign Up"%>
+    <%elsif params[:type] == '1' %>
+      <%=content_tag :h1,"Doctor Sign Up"%>
+    <%end%>
+
+    <div class="row">
+    <h3><strong>Photo</strong></h3>
+    <hr class="divider">
+    </div>
+    <div class="row">
+      <%=image_tag("dummy_pic.jpg", alt: "Example Image", :id=>"profilePic")%>
+
+    </div>
+    <div class="row text-center">
+     <!--  <input id="input-1a" type="file" class="file" data-show-preview="true"> -->
+      <%= u.file_field :photo %>
+    </div>
+    <br/>
+    <div class="row">
+      <h3><strong>Basic Information</strong></h3>
+      <hr class="divider">
+      <div id="" class="col-sm-6" >
+        <div class="row">
+          <div class="col-sm-11">
+            <label class="">First Name</label>
+          <span class="">*</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-11">
+            <%= u.text_field :firstName, class: 'form-control input-sm', required:true%>
+          </div>
+        </div>
+      </div><!-- divFirsteName -->
+      <div id="" class="col-sm-6" >
+        <div class="row">
+          <div class="col-sm-11">
+            <label class="">Last Name</label>
+            <span class="">*</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-11">
+            <%= u.text_field :lastName, class: 'form-control input-sm', required:true%>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div id="" class="col-sm-6" >
+        <div class="row">
+          <div class="col-sm-11">
+            <label class="">Gender</label>
+            <span class="">*</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-11">
+            <%= u.select :gender, options_for_select([['Male', true],['Female', false]]),{ include_blank: 'Select' },{ class:'input-sm', required: true  } %>
+            <!-- <select class="input-sm" required>
+              <option value="">Select</option>
+              <option value="1">Male</option>
+              <option value="2">Female</option>
+            </select> -->
+          </div>
+        </div>
+      </div>
+      <div id="" class="col-sm-6" >
+        <div class="row">
+          <div class="col-sm-11">
+            <label class="">Date of Birth</label>
+            <span class="">*</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-11">
+            <%=u.date_field :dob, class:'form-control input-sm', max: "#{Date.today.day}-#{Date.today.month}-#{Date.today.year-18}", required: true %>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div id="" class="col-sm-6" >
+        <div class="row">
+          <div class="col-sm-11">
+            <label class="">Email</label>
+            <span class="">*</span>
+            <!--  <span id="mailerror" class="text-danger"></span> -->
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-11">
+            <%=u.email_field :email, class:'form-control input-sm',required: true %>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div id="" class="col-sm-6" >
+        <div class="row">
+          <div class="col-sm-11">
+            <label class="">Password</label>
+            <span class="">*</span>
+            <span id="passLength">(6-20 characters)</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-11">
+            <%=u.password_field 'password', class:'form-control input-sm', onchange:'passLength()', required: true %>
+          </div>
+        </div>
+      </div><!-- divFirsteName -->
+      <div id="" class="col-sm-6" >
+        <div class="row">
+          <div class="col-sm-11">
+            <label class="">Confirm password</label>
+            <span class="">*</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-11">
+            <%=u.password_field 'password_confirmation', class:'form-control input-sm', onchange:'passConfirm()', required: true %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <h3><strong>Work Information</strong></h3>
+      <hr class="divider">
+      <div id="" class="col-sm-6" >
+        <div class="row">
+          <div class="col-sm-11">
+            <label class="">Department</label>
+            <span class="">*</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+          <%= u.select :department_id, options_for_select(@departments), { include_blank: 'Select' },{ class:'input-sm', required: true  }%>
+
+          </div>
+        </div>
+      </div><!-- divFirsteName -->
+      <div id="" class="col-sm-6" >
+        <div class="row">
+          <div class="col-sm-11">
+            <label class="">Designation</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-11">
+            <%=u.text_field 'designation', class:'form-control input-sm'%>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%if params[:type] == '1'%>
+      <%=content_tag :div, :class => "row" do
+        content_tag :div, :class => "col-sm-6" do
+          content_tag :div, :class => "row" do
+            content_tag :div, :class => "col-sm-11" do
+              content_tag(:label,"Specialization")+ tag(:br)+
+              u.text_field(:specialization, class:'form-control input-sm')
+            end
+          end
+        end
+      end%>
+    <%end%>
+  <!--     <div class="row">
+        <div id="" class="col-sm-6" >
+          <div class="row">
+            <div class="col-sm-11">
+              <label class="">Specialization</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-11">
+              <%=u.text_field 'specialization', class:'form-control input-sm'%>
+            </div>
+          </div>
+        </div>
+      </div> -->
+    <div class="row">
+      <h3><strong>Address</strong></h3>
+      <hr class="divider">
+      <div id="" class="col-sm-6" >
+        <div class="row">
+          <div class="col-sm-11">
+            <label class="">Street Address</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-11">
+            <%=u.text_field 'streetAddress', class:'form-control input-sm'%>
+          </div>
+        </div>
+      </div><!-- divFirsteName -->
+      <div id="" class="col-sm-6" >
+        <div class="row">
+          <div class="col-sm-11">
+            <label class="">City</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-11">
+            <%=u.text_field 'city', class:'form-control input-sm'%>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div id="" class="col-sm-6" >
+        <div class="row">
+          <div class="col-sm-11">
+            <label class="">Country</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-11">
+            <%=u.text_field 'country', class:'form-control input-sm'%>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+          <h3><strong>Contact</strong></h3>
+      <hr class="divider">
+      <div id="" class="col-sm-6" >
+        <div class="row">
+          <div class="col-sm-11">
+            <label class="">Phone#</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-11">
+            <%=u.telephone_field 'phone', class:'form-control input-sm', onchange:'phoneNo()' %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="row">
+      <input type="checkbox" id="" required>
+      <span class=""> Receive notifications and news from PRS</span>
+    </div>
+ -->
+    <div class="row">
+      <span id="">By clicking Register, you agree that you have read and
+     accepted the PRS</span>
+     <span >User Agreement and User Privacy Notice.</span>
+    </div>
+
+    <div class="row text-center">
+      <input type="submit" class="btn btn-primary"  value="Register" Font-Size="Large" BorderStyle="Solid"Font-Bold="true"/>
+    </div>
+  </div><!-- signUp -->
+<% end %>

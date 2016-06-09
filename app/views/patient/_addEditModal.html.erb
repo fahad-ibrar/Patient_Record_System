@@ -1,0 +1,37 @@
+<div class="modal fade" id=<%=modal_id%> role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><%=modal_title%></h4>
+      </div>
+
+       <%=form_for(type, :url=> {action:action_name, id:params[:id]},html: {id:modal_form_id }, remote:true) do |p| %>
+
+      <div class="modal-body">
+
+        <div class="row">
+
+          <div class="col-sm-2">
+            <label>Detail</label>
+          </div>
+
+          <div class="col-sm-5">
+            <%=p.text_field 'detail', class:'form-control input-sm', value:'', required:true%>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <input type="submit" class="btn btn-primary"  value="Save" Font-Size="Large" BorderStyle="Solid"Font-Bold="true"/>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+
+       <%end%>
+
+
+    </div>
+
+  </div>
+</div>

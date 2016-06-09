@@ -1,0 +1,36 @@
+<% @pageTitle="Login"%>
+<%=form_tag({:action=>'attempt_login'},onsubmit:'return submitForm()') do %>
+
+  <div id="login" class="container">
+    <h1>Login</h1>
+    <hr class="divider">
+    <div class="row">
+        <span class="text-danger">
+            <%if !flash[:loginError].blank?%>
+            <%=flash[:loginError]%>
+            <%end%>
+         </span>
+    </div>
+    <div class="row">
+      <%=email_field_tag 'email',nil, class:'form-control input-sm', placeholder:'Email', required: true %>
+    </div>
+    <br>
+    <div class="row">
+    <%=password_field_tag 'password', nil, class:'form-control input-sm', placeholder:'Password', onchange:'', required: true %>
+    </div>
+    <br>
+    <div class="row text-center">
+      <input type="submit" class="btn btn-primary"  value="Login" Font-Size="Large" BorderStyle="Solid"Font-Bold="true"/>
+    </div>
+
+    <hr class="divider">
+    <br>
+    <div class="row">
+    <%= link_to(' Sign Up as Admin',{:controller=>'user', :action=>'signup',:type=>0}) %>
+    </div>
+
+    <div class="row">
+    <%= link_to(' Sign Up as Doctor',{:controller=>'user', :action=>'signup', :type=>1}) %>
+    </div>
+  </div>
+<% end %>

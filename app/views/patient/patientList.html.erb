@@ -1,0 +1,83 @@
+<div class='container'>
+
+  <%=form_for(:patient, :url=> {:action=> "patient_search"},:html=>{},remote:true) do |p| %>
+
+  <div class='row'>
+      <div class='col-sm-3'>
+        <div class='row'>
+        <div class='col-sm-11'>
+          <label>First Name</label>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-sm-11'>
+         <%= p.text_field :firstName, class: 'form-control input-sm'%>
+         </div>
+        </div>
+      </div>
+
+      <div class='col-sm-3'>
+        <div class='row'>
+        <div class='col-sm-11'>
+          <label>Last Name</label>
+          </div>
+        </div>
+        <div class='row'>
+        <div class='col-sm-11'>
+         <%= p.text_field :lastName, class: 'form-control input-sm'%>
+        </div>
+        </div>
+      </div>
+
+      <div class='col-sm-1'>
+        <div class='row'>
+        <div class='col-sm-11'>
+          <label>Age</label>
+          </div>
+        </div>
+        <div class='row'>
+        <div class='col-sm-11'>
+         <%= p.number_field :age, class: 'form-control input-sm'%>
+         </div>
+        </div>
+      </div>
+
+      <div class='col-sm-2'>
+        <div class='row'>
+          <label>Gender</label>
+        </div>
+        <div class='row'>
+          <%= p.select :gender, options_for_select([['Male', true],['Female', false]]),{ include_blank: 'Select' },{ class:'input-sm' } %>
+        </div>
+      </div>
+
+      <div class='col-sm-2'>
+        <div class='row'>
+          <label>Sort By</label>
+        </div>
+        <div class='row'>
+          <%= p.select :sortBy, options_for_select([['First Name', 1],['Last Name', 2],['Age', 3]]),{ include_blank: 'Select' },{ class:'input-sm' } %>
+        </div>
+      </div>
+
+      <div class='col-sm-1'>
+        <div class='row'>
+          <label>Search</label>
+        </div>
+        <div class='row'>
+         <input type="submit" class="btn btn-primary"  value="Search" Font-Size="Large" BorderStyle="Solid"Font-Bold="true"/>
+        </div>
+      </div>
+    </div>
+
+  <%end%>
+
+  <br>
+
+
+  <div class="container table-responsive">
+    <div id='patients'>
+      <%= render 'patient_list' %>
+    </div>
+  </div>
+</div>

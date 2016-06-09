@@ -1,0 +1,41 @@
+<%= form_for(:patient, :url=> {:controller=>'patient',:action=>'deleteHistories',id:params[:id]}, :html=>{id:'patient_history_form'}, remote:true) do %>
+
+
+    <table  class="table table-hover">
+    <thead>
+        <tr>
+          <th>Date</th>
+          <th>Doctor</th>
+          <th>Detail</th>
+          <th>Delete</th>
+          <th>Edit</th>
+          <th>Select</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+          <% @patientHistories.each do |p| %>
+            <tr>
+              <td><%= p.date%></td>
+              <td><%=p.user.firstName%> <%=p.user.lastName%></td>
+              <td><%= p.detail%></td>
+
+              <td><%= link_to('Delete',{action:'deleteHistory',id:p.patient_id,history_id:p.id}, remote:true)%></td>
+
+              <td class="patientHistoryEdit"><%= link_to "Edit","#editHistory","data-toggle" => "modal" , 'data-target' => '#editHistory','data_patient_id'=>p.patient_id,'data_history_id'=>p.id,'data_history_detail'=>p.detail %></td>
+
+              <td><%=check_box_tag "patientHistory_ids[]",p.id%></td>
+            </tr>
+
+          <%end%>
+
+
+        </tbody>
+    </table>
+
+      <%= submit_tag "Delete"%>
+
+    <%end%>
+
+    <div id="paging_history"><%= will_paginate @patientHistories %></div>
